@@ -1,0 +1,1 @@
+<h1>Mini ERP fonctionne 🚀</h1>
