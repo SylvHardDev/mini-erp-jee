@@ -17,7 +17,7 @@
                       value="postgres"/>
 
             <property name="jakarta.persistence.jdbc.password"
-                      value="ton_mot_de_passe"/>
+                      value="HardevHardev"/>
 
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.PostgreSQLDialect"/>

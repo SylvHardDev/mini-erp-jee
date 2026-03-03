@@ -13,6 +13,18 @@ public class LoginServlet extends HttpServlet {
 
     private final AuthService authService = new AuthService();
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Déjà connecté ? → dashboard
+        if (request.getSession().getAttribute("user") != null) {
+            response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
+            return;
+        }
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,11 +36,10 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
         } else {
             request.setAttribute("error", "Identifiants invalides");
-            request.getRequestDispatcher("login.jsp")
-                    .forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 }

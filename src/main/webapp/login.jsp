@@ -1,13 +1,24 @@
-<h2>Login</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Mini ERP</title>
+</head>
+<body>
+    <h1>Mini ERP</h1>
+    <h2>Connexion</h2>
 
-<form action="login" method="post">
-    <input type="text" name="username" placeholder="Username" required />
-    <br><br>
-    <input type="password" name="password" placeholder="Password" required />
-    <br><br>
-    <button type="submit">Login</button>
-</form>
+    <form action="${pageContext.request.contextPath}/login" method="post">
+        <label for="username">Identifiant</label><br>
+        <input type="text" id="username" name="username" required autofocus><br><br>
 
-<p style="color:red;">
-    ${error}
-</p>
+        <label for="password">Mot de passe</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <p style="color: red;">${error}</p>
+</body>
+</html>
