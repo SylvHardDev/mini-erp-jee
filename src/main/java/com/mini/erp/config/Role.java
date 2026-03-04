@@ -22,4 +22,9 @@ public final class Role {
     public static boolean canAccessProducts(String role) {
         return ADMIN.equals(role) || STOCK.equals(role);
     }
+
+    /** Accès à la gestion des employés (utilisateurs) : réservé à l'admin. */
+    public static boolean canAccessUserManagement(String role) {
+        return ADMIN.equals(role);
+    }
 }

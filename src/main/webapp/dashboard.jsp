@@ -89,6 +89,19 @@
             <div class="col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
+                        <h2 class="h6 mb-2">Employés</h2>
+                        <p class="text-muted small mb-3">Gérer les comptes (commercial, stock).</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/users">
+                            Voir les employés
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
                         <h2 class="h6 mb-2">Commandes</h2>
                         <p class="text-muted small mb-3">Suivi des commandes.</p>
                         <button class="btn btn-outline-primary btn-sm" disabled>
