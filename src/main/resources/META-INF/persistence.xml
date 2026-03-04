@@ -6,6 +6,8 @@
         <class>com.mini.erp.model.User</class>
         <class>com.mini.erp.model.Client</class>
         <class>com.mini.erp.model.Product</class>
+        <class>com.mini.erp.model.Order</class>
+        <class>com.mini.erp.model.OrderLine</class>
 
         <properties>
 

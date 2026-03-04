@@ -103,10 +103,11 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
                         <h2 class="h6 mb-2">Commandes</h2>
-                        <p class="text-muted small mb-3">Suivi des commandes.</p>
-                        <button class="btn btn-outline-primary btn-sm" disabled>
-                            Bientôt disponible
-                        </button>
+                        <p class="text-muted small mb-3">Créer et suivre les commandes.</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/orders">
+                            Voir les commandes
+                        </a>
                     </div>
                 </div>
             </div>

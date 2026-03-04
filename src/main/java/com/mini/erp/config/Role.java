@@ -27,4 +27,9 @@ public final class Role {
     public static boolean canAccessUserManagement(String role) {
         return ADMIN.equals(role);
     }
+
+    /** Accès à la gestion des commandes : réservé à l'admin. */
+    public static boolean canAccessOrders(String role) {
+        return ADMIN.equals(role);
+    }
 }
