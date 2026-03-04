@@ -16,10 +16,12 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Déjà connecté ? → dashboard
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
             return;
+        }
+        if ("1".equals(request.getParameter("created"))) {
+            request.setAttribute("success", "Compte administrateur créé. Connectez-vous.");
         }
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }

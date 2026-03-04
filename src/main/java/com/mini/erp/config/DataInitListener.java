@@ -1,29 +1,19 @@
 package com.mini.erp.config;
 
-import com.mini.erp.dao.UserDAO;
-import com.mini.erp.model.User;
-
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
 /**
- * Au démarrage de l'application, crée un utilisateur par défaut (admin/admin)
- * si la table des utilisateurs est vide. Pratique pour le premier déploiement.
+ * Ferme l'EntityManagerFactory à l'arrêt de l'application.
+ * Le premier compte admin est créé via l'interface /setup quand la base est vide.
  */
 @WebListener
 public class DataInitListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        UserDAO userDAO = new UserDAO();
-        if (userDAO.findByUsername("admin") == null) {
-            User admin = new User();
-            admin.setUsername("admin");
-            admin.setPassword("admin");
-            admin.setRole("ADMIN");
-            userDAO.save(admin);
-        }
+        // Plus de création automatique d'admin : on affiche l'interface /setup si la base est vide
     }
 
     @Override
