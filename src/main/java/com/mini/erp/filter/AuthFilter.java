@@ -29,7 +29,14 @@ import java.io.IOException;
         "/clients/new",
         "/clients/edit",
         "/clients/delete",
-        "/client-form.jsp"
+        "/client-form.jsp",
+        "/products",
+        "/products.jsp",
+        "/products/new",
+        "/products/edit",
+        "/products/delete",
+        "/product-form.jsp",
+        "/product-image"
 })
 public class AuthFilter implements Filter {
 

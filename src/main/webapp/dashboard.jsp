@@ -68,9 +68,10 @@
                 <div class="card-body">
                     <h2 class="h6 mb-2">Produits</h2>
                     <p class="text-muted small mb-3">Catalogue produits et stock.</p>
-                    <button class="btn btn-outline-primary btn-sm" disabled>
-                        Bientôt disponible
-                    </button>
+                    <a class="btn btn-outline-primary btn-sm"
+                       href="${pageContext.request.contextPath}/products">
+                        Voir les produits
+                    </a>
                 </div>
             </div>
         </div>
