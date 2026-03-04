@@ -28,7 +28,7 @@ public class UserEditServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/users");
             return;
         }
-        request.setAttribute("user", user);
+        request.setAttribute("formUser", user);
         request.getRequestDispatcher("/user-form.jsp").forward(request, response);
     }
 
@@ -56,7 +56,7 @@ public class UserEditServlet extends HttpServlet {
             userService.update(user);
             response.sendRedirect(request.getContextPath() + "/users");
         } catch (IllegalArgumentException e) {
-            request.setAttribute("user", existing);
+            request.setAttribute("formUser", existing);
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/user-form.jsp").forward(request, response);
         }
