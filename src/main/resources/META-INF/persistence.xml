@@ -4,6 +4,7 @@
     <persistence-unit name="miniERP">
 
         <class>com.mini.erp.model.User</class>
+        <class>com.mini.erp.model.Client</class>
 
         <properties>
 

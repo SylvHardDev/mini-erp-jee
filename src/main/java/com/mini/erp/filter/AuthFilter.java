@@ -22,7 +22,15 @@ import java.io.IOException;
  * Pour l'instant il protège uniquement dashboard.jsp.
  * On étendra ensuite aux autres pages métier (clients, produits, etc.).
  */
-@WebFilter(urlPatterns = {"/dashboard.jsp"})
+@WebFilter(urlPatterns = {
+        "/dashboard.jsp",
+        "/clients",
+        "/clients.jsp",
+        "/clients/new",
+        "/clients/edit",
+        "/clients/delete",
+        "/client-form.jsp"
+})
 public class AuthFilter implements Filter {
 
     @Override
