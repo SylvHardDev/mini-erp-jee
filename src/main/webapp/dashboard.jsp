@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
   if (session == null || session.getAttribute("user") == null) {
     response.sendRedirect(request.getContextPath() + "/login");
@@ -42,63 +43,73 @@
     <div class="row">
         <div class="col-12">
             <h1 class="h3 mb-3">Tableau de bord</h1>
+            <c:if test="${param.access == 'denied'}">
+                <div class="alert alert-warning mb-3" role="alert">
+                    Vous n'avez pas les droits d'accès à cette section.
+                </div>
+            </c:if>
             <p class="text-muted">
-                Bienvenue dans votre mini ERP. Ici nous ajouterons :
-                gestion des clients, produits, commandes et factures.
+                Bienvenue dans votre mini ERP. Accédez aux modules selon votre rôle.
             </p>
         </div>
     </div>
 
     <div class="row g-3 mt-1">
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h2 class="h6 mb-2">Clients</h2>
-                    <p class="text-muted small mb-3">Gérer les fiches clients.</p>
-                    <a class="btn btn-outline-primary btn-sm"
-                       href="${pageContext.request.contextPath}/clients">
-                        Voir les clients
-                    </a>
+        <c:if test="${sessionScope.user.role == 'ADMIN' || sessionScope.user.role == 'COMMERCIAL'}">
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h6 mb-2">Clients</h2>
+                        <p class="text-muted small mb-3">Gérer les fiches clients.</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/clients">
+                            Voir les clients
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h2 class="h6 mb-2">Produits</h2>
-                    <p class="text-muted small mb-3">Catalogue produits et stock.</p>
-                    <a class="btn btn-outline-primary btn-sm"
-                       href="${pageContext.request.contextPath}/products">
-                        Voir les produits
-                    </a>
+        <c:if test="${sessionScope.user.role == 'ADMIN' || sessionScope.user.role == 'STOCK'}">
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h6 mb-2">Produits</h2>
+                        <p class="text-muted small mb-3">Catalogue produits et stock.</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/products">
+                            Voir les produits
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h2 class="h6 mb-2">Commandes</h2>
-                    <p class="text-muted small mb-3">Suivi des commandes.</p>
-                    <button class="btn btn-outline-primary btn-sm" disabled>
-                        Bientôt disponible
-                    </button>
+        <c:if test="${sessionScope.user.role == 'ADMIN'}">
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h6 mb-2">Commandes</h2>
+                        <p class="text-muted small mb-3">Suivi des commandes.</p>
+                        <button class="btn btn-outline-primary btn-sm" disabled>
+                            Bientôt disponible
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h2 class="h6 mb-2">Factures</h2>
-                    <p class="text-muted small mb-3">Facturation et règlements.</p>
-                    <button class="btn btn-outline-primary btn-sm" disabled>
-                        Bientôt disponible
-                    </button>
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h6 mb-2">Factures</h2>
+                        <p class="text-muted small mb-3">Facturation et règlements.</p>
+                        <button class="btn btn-outline-primary btn-sm" disabled>
+                            Bientôt disponible
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
     </div>
 </main>
 

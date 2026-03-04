@@ -1,5 +1,6 @@
 package com.mini.erp.filter;
 
+import com.mini.erp.config.Role;
 import com.mini.erp.model.User;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -15,12 +16,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Filtre d'authentification :
- * - vérifie qu'un utilisateur est présent en session
- * - sinon, redirige vers la page de login.
- *
- * Pour l'instant il protège uniquement dashboard.jsp.
- * On étendra ensuite aux autres pages métier (clients, produits, etc.).
+ * Filtre d'authentification et de contrôle d'accès par rôle :
+ * - vérifie qu'un utilisateur est présent en session, sinon redirige vers /login ;
+ * - vérifie que le rôle autorise l'URL demandée (clients → ADMIN ou COMMERCIAL, produits → ADMIN ou STOCK).
  */
 @WebFilter(urlPatterns = {
         "/dashboard.jsp",
@@ -42,7 +40,6 @@ public class AuthFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        // Rien de spécial à initialiser pour l'instant
     }
 
     @Override
@@ -57,12 +54,28 @@ public class AuthFilter implements Filter {
         User user = (session != null) ? (User) session.getAttribute("user") : null;
 
         if (user == null) {
-            // Pas connecté → redirection vers la page de login
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
         }
 
-        // Utilisateur présent → on continue la chaîne normale
+        String path = httpRequest.getServletPath();
+        String role = user.getRole() != null ? user.getRole() : "";
+
+        if (path != null) {
+            if (path.startsWith("/clients") || "/client-form.jsp".equals(path)) {
+                if (!Role.canAccessClients(role)) {
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard.jsp?access=denied");
+                    return;
+                }
+            }
+            if (path.startsWith("/products") || "/product-form.jsp".equals(path) || "/product-image".equals(path)) {
+                if (!Role.canAccessProducts(role)) {
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard.jsp?access=denied");
+                    return;
+                }
+            }
+        }
+
         chain.doFilter(request, response);
     }
 
