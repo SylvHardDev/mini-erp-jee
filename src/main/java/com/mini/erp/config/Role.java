@@ -28,8 +28,8 @@ public final class Role {
         return ADMIN.equals(role);
     }
 
-    /** Accès à la gestion des commandes : réservé à l'admin. */
+    /** Accès à la gestion des commandes : admin et commercial. */
     public static boolean canAccessOrders(String role) {
-        return ADMIN.equals(role);
+        return ADMIN.equals(role) || COMMERCIAL.equals(role);
     }
 }

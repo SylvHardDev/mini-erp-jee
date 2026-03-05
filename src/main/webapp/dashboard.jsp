@@ -85,6 +85,21 @@
             </div>
         </c:if>
 
+        <c:if test="${sessionScope.user.role == 'ADMIN' || sessionScope.user.role == 'COMMERCIAL'}">
+            <div class="col-md-6 col-lg-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h6 mb-2">Commandes</h2>
+                        <p class="text-muted small mb-3">Créer et suivre les commandes.</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/orders">
+                            Voir les commandes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+
         <c:if test="${sessionScope.user.role == 'ADMIN'}">
             <div class="col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0">
@@ -94,19 +109,6 @@
                         <a class="btn btn-outline-primary btn-sm"
                            href="${pageContext.request.contextPath}/users">
                             Voir les employés
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <h2 class="h6 mb-2">Commandes</h2>
-                        <p class="text-muted small mb-3">Créer et suivre les commandes.</p>
-                        <a class="btn btn-outline-primary btn-sm"
-                           href="${pageContext.request.contextPath}/orders">
-                            Voir les commandes
                         </a>
                     </div>
                 </div>
