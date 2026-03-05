@@ -32,4 +32,9 @@ public final class Role {
     public static boolean canAccessOrders(String role) {
         return ADMIN.equals(role) || COMMERCIAL.equals(role);
     }
+
+    /** Accès à la gestion des factures (liste, génération, vue) : admin et commercial. */
+    public static boolean canAccessInvoices(String role) {
+        return ADMIN.equals(role) || COMMERCIAL.equals(role);
+    }
 }

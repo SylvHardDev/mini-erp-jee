@@ -45,7 +45,12 @@ import java.io.IOException;
         "/orders.jsp",
         "/orders/new",
         "/orders/delete",
-        "/order-form.jsp"
+        "/order-form.jsp",
+        "/invoices",
+        "/invoices.jsp",
+        "/invoices/generate",
+        "/invoices/view",
+        "/invoice-view.jsp"
 })
 public class AuthFilter implements Filter {
 
@@ -93,6 +98,12 @@ public class AuthFilter implements Filter {
             }
             if (path.startsWith("/orders") || "/order-form.jsp".equals(path)) {
                 if (!Role.canAccessOrders(role)) {
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard.jsp?access=denied");
+                    return;
+                }
+            }
+            if (path.startsWith("/invoices") || "/invoice-view.jsp".equals(path)) {
+                if (!Role.canAccessInvoices(role)) {
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard.jsp?access=denied");
                     return;
                 }

@@ -114,14 +114,18 @@
                 </div>
             </div>
 
+        </c:if>
+
+        <c:if test="${sessionScope.user.role == 'ADMIN' || sessionScope.user.role == 'COMMERCIAL'}">
             <div class="col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
                         <h2 class="h6 mb-2">Factures</h2>
-                        <p class="text-muted small mb-3">Facturation et règlements.</p>
-                        <button class="btn btn-outline-primary btn-sm" disabled>
-                            Bientôt disponible
-                        </button>
+                        <p class="text-muted small mb-3">Consulter et imprimer les factures.</p>
+                        <a class="btn btn-outline-primary btn-sm"
+                           href="${pageContext.request.contextPath}/invoices">
+                            Voir les factures
+                        </a>
                     </div>
                 </div>
             </div>

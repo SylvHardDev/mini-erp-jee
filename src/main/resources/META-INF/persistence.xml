@@ -8,6 +8,8 @@
         <class>com.mini.erp.model.Product</class>
         <class>com.mini.erp.model.Order</class>
         <class>com.mini.erp.model.OrderLine</class>
+        <class>com.mini.erp.model.Invoice</class>
+        <class>com.mini.erp.model.InvoiceLine</class>
 
         <properties>
 

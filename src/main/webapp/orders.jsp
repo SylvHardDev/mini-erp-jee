@@ -49,6 +49,13 @@
         </a>
     </div>
 
+    <c:if test="${not empty param.error}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            ${param.error}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </c:if>
+
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
             <c:choose>
@@ -74,6 +81,23 @@
                                     <td><span class="badge bg-secondary">${order.status}</span></td>
                                     <td class="text-end">${order.totalAmount} €</td>
                                     <td class="text-end">
+                                        <c:choose>
+                                            <c:when test="${not empty invoiceIdByOrderId[order.id]}">
+                                                <a class="btn btn-sm btn-outline-primary me-1"
+                                                   href="${pageContext.request.contextPath}/invoices/view?id=${invoiceIdByOrderId[order.id]}">
+                                                    Voir facture
+                                                </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <form action="${pageContext.request.contextPath}/invoices/generate"
+                                                      method="post" class="d-inline me-1">
+                                                    <input type="hidden" name="orderId" value="${order.id}"/>
+                                                    <button type="submit" class="btn btn-sm btn-outline-success">
+                                                        Facturer
+                                                    </button>
+                                                </form>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <form action="${pageContext.request.contextPath}/orders/delete"
                                               method="post"
                                               class="d-inline"
